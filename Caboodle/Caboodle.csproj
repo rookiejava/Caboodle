@@ -64,6 +64,16 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'Xamarin.iOS10' ">
     <Compile Include="**\*.ios.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="UIThreadRunInvoker\UIThreadRunInvoker.netstandard.cs" />
+    <None Remove="UIThreadRunInvoker\UIThreadRunInvoker.shared.cs" />
+    <None Remove="UIThreadRunInvoker\UIThreadRunInvokerExtensions.shared.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'MonoAndroid80'">
+    <PackageReference Include="Xamarin.Android.Support.CustomTabs">
+      <Version>26.1.0.1</Version>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
   <Import Project="$(MSBuildProjectDirectory)\mdoc.targets" />
 </Project>
