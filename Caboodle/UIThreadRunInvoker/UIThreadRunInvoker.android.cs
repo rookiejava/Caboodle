@@ -9,23 +9,11 @@ namespace Microsoft.Caboodle
 
     public partial class UIThreadRunInvoker
     {
-        public static UIContext Context
-        {
-            get;
-            set;
-        }
-
-        static UIThreadRunInvoker()
-        {
-            return;
-        }
-
         public static void BeginInvokeOnUIThread(Action action)
         {
-            var activity = UIThreadRunInvoker.Context as Android.App.Activity;
-            if (activity != null)
+            if (Platform.CurrentActivity != null)
             {
-                activity.RunOnUiThread(action);
+                Platform.CurrentActivity.RunOnUiThread(action);
             }
             else
             {
